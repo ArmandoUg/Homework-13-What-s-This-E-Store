@@ -57,7 +57,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Category and Tag data
 
 // create new product
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -66,6 +66,14 @@ router.post('/', async (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+//  try {
+//   const oneProduct = await Product.create(req.body);
+//   res.status(200).json(oneProduct);
+//   } catch (err) {
+//     res.status(400).json(`An Error occurred`, err);
+//   }
+//  }
+// );
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
